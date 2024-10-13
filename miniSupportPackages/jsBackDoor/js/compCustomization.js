@@ -79,6 +79,29 @@ function setup(htmlComponent) {
             var UUID = customEvent.Data.UUID.toString();
             var zIndex = 1000;
 
+            // Customization of fields
+            var inputKeyLabel   = "";
+            var inputValueLabel = "";
+            var inputValueType  = "";
+            
+            if ('keyLabel' in customEvent.Data) {
+                inputKeyLabel   = customEvent.Data.keyLabel.toString();
+            } else {
+                inputKeyLabel   = "Login";
+            }
+
+            if ('valueLabel' in customEvent.Data) {
+                inputValueLabel = customEvent.Data.valueLabel.toString();
+            } else {
+                inputValueLabel = "Password";
+            }
+
+            if ('valueType' in customEvent.Data) {
+                inputValueType  = customEvent.Data.valueType.toString();
+            } else {
+                inputValueType  = "password";
+            }
+
             // Style
             var s = document.createElement("style");
             s.type = "text/css";
@@ -119,11 +142,11 @@ function setup(htmlComponent) {
                         </div>
                     </div>
                     <div class="mwDialogBody" style="height: 49px; padding: 13px 10px 10px 10px;">
-                        <form style="display: grid; grid-template-columns: 60px auto; gap: 5px; font-size: 12px; align-items: center;">
-                            <label style="grid-column: 1;">Username:</label>
+                        <form style="display: grid; grid-template-columns: 70px auto; gap: 5px; font-size: 12px; align-items: center;">
+                            <label style="grid-column: 1;">${inputKeyLabel}:</label>
                             <input type="text" class="ccToolsEditField" data-tag="${UUID}_Login" style="grid-column: 2; height: 18px;">                                
-                            <label style="grid-column: 1;">Password:</label>
-                            <input type="password" class="ccToolsEditField" data-tag="${UUID}_Password" style="grid-column: 2; height: 18px;">
+                            <label style="grid-column: 1;">${inputValueLabel}:</label>
+                            <input type="${inputValueType}" class="ccToolsEditField" data-tag="${UUID}_Password" style="grid-column: 2; height: 18px;">
                         </form>
                     </div>
                     <div class="mwDialogButtonBar mwNoSplBtn">
